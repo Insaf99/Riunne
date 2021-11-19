@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>RIUNNE</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/popper.min.js}"></script>
+</head>
+<body>
+    <header th:fragment="header">
+        <div role="navigation" class="navbar navbar-light" id="main-menu" style="padding-right:0px; padding-left:0px ;padding-top:0px; padding-bottom:0px;">
+            <div class="container-fluid" style="margin-right:30px; margin-left:30px; padding-left:15px; padding-right:15px;">
+                <div class="navbar-header" style="height:65px;">
+                    <a class="navbar-brand" href="/" style="margin-left:-15px; padding-top:0px; padding-bottom:0px; margin-right:15px;">
+                        <img src="/Logo_riunne.png" style="display:block; width:auto; height:50px; margin-top:10px; margin-bottom:5px; padding-left:20px;"/>
+                    </a>
+                </div>
+                <div class="navbar-header pull-right hidden-xs">
+                    <ul class="nav navbar-nav pull-left" style="float:left; margin:0;">
+                        <li class="nav-item dropdown" style="float:left; position:relative; display:block;">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                            style="padding-top:15px; padding-bottom:15px; padding:right:20px; line-height:20px; position:relative; display:block; padding:10px 15px; background-color:transparent; color:#343a40;">
+                                Español
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position:absolute; z-index:1000;color:#343a40;">
+                                <a class="dropdown-item" th:href="@{/(lang=es)}">Español</a>
+                                <a class="dropdown-item" th:href="@{/(lang=en)}">English</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-left" style="float:left; margin:0;" sec:authorize="isAuthenticated()">
+                        <li class="nav-item dropdown" style="float:left; position:relative; display:block;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                               style="padding-top:15px; padding-bottom:15px; padding:right:20px; line-height:20px; position:relative; display:block; padding:10px 15px; background-color:transparent; color:#343a40;">
+                                <i class="fas fa-user" style="color:#343a40;"></i>
+                                <span class="hidden-xs" sec:authentication="name" style="color:#343a40;">Usuario:</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position:absolute; z-index:1000;color:#343a40;">
+                                <a href="#" style="color:#343a40;"><i class="fas fa-user"></i> Perfil</a>
+                                <form method="POST" th:action="@{/logout}">
+                                    <a href="#" onclick="this.parentNode.submit();" class="nav-link" style="color:#343a40;">
+                                        <i class="fas fa-user-times"></i> [[#{barra.salir}]]
+                                    </a>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-dark p-0" style="background-color:#118EA2;">
+            <div class="container">
+                <a th:href="@{/}" class="navbar-brand" th:text="#{plantilla.titulo}">Riunne</a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.titulo}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.webinars}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.acceso}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.depositar}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.propiedad}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.preguntas}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item px-2">
+                            <a th:href="@{/}" class="nav-link active" th:text="#{barra.contacto}">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div th:fragment="menu" role="navigation" id="sidebar" class="col-xs-6 col-sm3 sidebar-offcanvas" style="background-color=#ffffff;width:25%;float:left;position:relative;min-height:1px;padding-left:15px;padding-right:15px;">
+        <div class="word-break hidden-print" id="ds-options" style="padding-top:20px;">
+            <div class="list-group" style="margin-bottom:20px;padding-left:0;">
+                <a class="list-group-item" href="/" style="
+                margin-bottom:0;
+                border-bottom-right-radius:4px;
+                border-bottom-left-radius:4px;
+                border-top-right-radius:4px;
+                border-top-left-radius:4px;
+                color:#555;
+                position:relative;
+                display:block;
+                padding:10px 15px;
+                background-color:#fff;
+                border:1px solid #ddd;
+                width:292px;
+                height:142px;">
+                    <div class="row" style="margin-left:15;margin-right:-15px">
+                        <div class="col-md-12 hcenter" style="text-align:center;width:100%;float:left;padding-left:15px;padding-right:15px;">
+                            <i class="fas fa-cloud-download-alt" style="font-size:3em;position:relative;top:1px;display:inline-block;"></i>
+                            <div><b style="padding-top:5px">Depositar Material</b></div>
+                        </div>
+                    </div>
+                    <div class="row hidden-xs" style="margin-left:15;margin-right:-15px;display:block;cursor:pointer;word-break:break-word;">
+                        <div class="col-md-12" style="text-align:center;width:100%;float:left;padding-left:15px;padding-right:15px;padding-top:10px;">Deposite sus trabajos en RIUNNE para mejorar su visibilidad e impacto</div>
+                    </div>
+                </a>
+            </div>
+            <h6 style="text-align:center;margin-bottom:5px;margin-left: 0px;width: 300px;">LISTAR</h6>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <a style="z-index:2;color:#fff;background-color:#118EA2;text-decoration:none;position:relative;display:block;padding:10px 15px;margin-bottom:-1px;border-top-right-radius:4px;border-top-left-radius:4px;border-color:none;">
+                    <span>Todo el RIUNNE</span>
+                </a>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Comunidades & Colecciones</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Por fecha de publicación</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Autores</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Títulos</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Materias</a>
+                </div>
+            </div>
+            <h6 style="text-align:center;margin-bottom:5px;margin-left: 0px;width: 300px;">Mi Cuenta</h6>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Acceder</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Registro</a>
+                </div>
+            </div>
+            <h6 style="text-align:center;margin-bottom:5px;margin-left: 0px;width: 300px;">Descubre</h6>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <a style="z-index:2;color:#fff;background-color:#118EA2;text-decoration:none;position:relative;display:block;padding:10px 15px;margin-bottom:-1px;border-top-right-radius:4px;border-top-left-radius:4px;border-color:none;">
+                    <span>Autor</span>
+                </a>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Aca muestra autores</a>
+                </div>
+            </div>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <a style="z-index:2;color:#fff;background-color:#118EA2;text-decoration:none;position:relative;display:block;padding:10px 15px;margin-bottom:-1px;border-top-right-radius:4px;border-top-left-radius:4px;border-color:none;">
+                    <span>Materia</span>
+                </a>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Aca muestra materias</a>
+                </div>
+
+            </div>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <a style="z-index:2;color:#fff;background-color:#118EA2;text-decoration:none;position:relative;display:block;padding:10px 15px;margin-bottom:-1px;border-top-right-radius:4px;border-top-left-radius:4px;border-color:none;">
+                    <span>Fecha</span>
+                </a>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Aca muestra las fechas</a>
+                </div>
+
+            </div>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <a style="z-index:2;color:#fff;background-color:#118EA2;text-decoration:none;position:relative;display:block;padding:10px 15px;margin-bottom:-1px;border-top-right-radius:4px;border-top-left-radius:4px;border-color:none;">
+                    <span>Archivos</span>
+                </a>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Tienen Archivos</a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Les faltan archivos</a>
+                </div>
+
+            </div>
+            <h6 style="text-align:center;margin-bottom:5px;margin-left: 0px;width: 300px;">Estadisticas de uso</h6>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="/#" style="color:#343a40;">Ver estadisticas de uso</a>
+                </div>
+            </div>
+            <h6 style="text-align:center;margin-bottom:5px;margin-left: 0px;width: 300px;">Links de Interés</h6>
+            <div class="list-group" style="margin-bottom:20px; width:300px;">
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="https://biblioteca.mincyt.gob.ar/" target="_blank" title="Biblioteca Electrónica de Ciencia y Tecnología">
+                        <img src="/becyt.png" alt="Biblioteca Electrónica de Ciencia y Tecnología" style="height:auto;max-width:100%;vertical-align:middle;display:block;margin-left:auto;"/>
+                    </a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="https://repositoriosdigitales.mincyt.gob.ar/vufind/" target="_blank" title="Sistema Nacional de Repositorios Digitales">
+                        <img src="/SistNRD.png" alt="Sistema Nacional de Repositorios Digitales" style="height:auto;max-width:100%;vertical-align:middle;display:block;margin-left:auto;"/>
+                    </a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="https://dacytar.mincyt.gob.ar/" target="_blank" >
+                        <img src="/Dacytar.png" style="height:auto;max-width:100%;vertical-align:middle;display:block;margin-left:auto;"/>
+                    </a>
+                </div>
+                <div class="list-group-item ds-option" style="position:relative;display:block;padding:10px 15px;margin-bottom:-1px;background-color:#fff;border:1px solid #ddd;">
+                    <a href="http://revistas.unne.edu.ar/" target="_blank" >
+                        <img src="/Revistas.png" style="height:auto;max-width:100%;vertical-align:middle;display:block;margin-left:auto;"/>
+                    </a>
+                </div>
+        </div>
+        </div>
+    </div>
+
+    <footer th:fragment="footer" style="background-color: #EAECEB; margin-left: 0;margin-right: 0;margin-top: 38px;border-top:1px solid #e8e8e8">
+        <div class="row" style="margin-left: 15px;margin-right: 15px;">
+            <p style="margin-left:13px;">Todos los registros contenidos en RIUNNE, se encuentran también indexados por:</p>
+        </div>
+        <div class="row" style="margin-left: 15px;margin-right: 15px;">
+            <div class="col-md-3 col-xs-4">
+                <a href="http://cosechador.siu.edu.ar/bdu3" target="_blank" title="BDU2">
+                    <img src="/bdu2.png" style="display:block; width:auto; height:auto; margin-top:10px; margin-bottom:5px; padding-left:20px;max-width:100%;"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <a href="http://repositorios.mincyt.gob.ar" target="_blank" title="Sistema Nacional de Repositorios Nacionales">
+                    <img src="/SNRD.png" style="height:auto; max-width:100%;"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <a href="https://www.base-search.net/" target="_blank" title="Base">
+                    <img src="/base_logo.gif" style="height:auto; max-width:100%;padding-left:100px;padding-top:20px;"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <a href="http://atmire.com" target="_blank" title="Atmire NV">
+                    <img src="/atmire.png" style="display:block; width:auto; height:auto; margin-top:10px; margin-bottom:5px; padding-left:105px;max-width:100%;"/>
+                </a>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left: 15px;margin-right: 15px;">
+            <div class="col-md-4 hidden-print">
+                <a href="#" style="color:#343a40;">Contacto</a>   |
+                <a href="#" style="color:#343a40;">Sugerencias</a>
+            </div>
+            <div class="col-md-8 hidden-print hidden-sm hidden-xs" style="padding-left:220px;">
+                <p>RIUNNE esta basado en DSpace softwarecopyright © 2002 - 2021| Comunidad DuraSpace</p>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+</html>

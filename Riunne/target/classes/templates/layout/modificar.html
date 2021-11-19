@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/plantilla :: head">
+    <meta charset="UTF-8"/>
+    <title>Datos del Articulo</title>
+</head>
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
+
+    <h1>[[#{articulo.formulario}]]</h1>
+    <a th:href="@{/}">Regresar</a>
+    <br/>
+    <form th:action="@{/guardar}" method="post" th:object="${articulo}">
+        <input type="hidden" name="id_articulo" th:field="*{id_articulo}"/>
+        <label for="nombre">[[#{articulo.nombre}]]:</label>
+        <input type="text" name="nombre" th:field="*{nombre}"/>
+        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>
+        <br/>
+        <label for="autor">[[#{articulo.autor}]]</label>
+        <input type="text" name="autor" th:field="*{autor}"/>
+        <span th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}">Error Autor</span>
+        <br/>
+        <label for="fecha">[[#{articulo.fecha}]]</label>
+        <input type="text" name="fecha" th:field="*{fecha}"/>
+        <span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}">Error Fecha</span>
+        <br/>
+        <input type="submit" name="guardar" value="Guardar"/>
+    </form>
+    <footer th:replace="layout/plantilla :: footer"></footer>
+</body>
+</html>
